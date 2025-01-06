@@ -1,5 +1,6 @@
 const http = require('node:https')
 const fs = require('node:fs');
+const {searchLinks} = require('./services/contentHandler');
 
 console.log("requesting data from page");  
 
@@ -24,7 +25,8 @@ let data = '';
 
     // The whole response has been received
     res.on('end', () => {
-        writeFile(data);
+        //writeFile(data);
+        searchLinks(data);
     });
     }).on('error', (err) => {
     console.error('Error:', err.message);
