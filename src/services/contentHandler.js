@@ -3,12 +3,13 @@ const searchLinks = (htmlContent) => {
 
     const nospacesContent = htmlContent.replace(/ /g,'');
     const contentArr = nospacesContent.split(/[\r\n\s]+/);
-    console.log(contentArr[0]);
 
+    console.log('Parsing html to json format');
+    parseJson(contentArr);
 }
 
 const parseJson = (content) =>{
-    const tagNameRegExp = '/<\/?([a-zA-Z][\w-]*)/g';
+    const tagNameRegExp = new RegExp(/<(\/?|!?)([a-zA-Z][\w-]*)/g);
     const selfClosingRegex = /<([a-zA-Z][\w-]*)\s*[^>]*\/>/;
 
     const response = {};
@@ -16,10 +17,18 @@ const parseJson = (content) =>{
     let isSelfClosingTag = false;
 
     for(let i = 0; i < content.length; i++){
-        const match = content[i].test(tagNameRegExp)
+
+        console.log(`Testing ${content[i]}`);
+        
+        const match = tagNameRegExp.exec(content[i]);
+        console.log(match);
+
         if(match){
-            console.log(march[1]);
+            response[match[1] != '!' ? match[1] : match[2]] = {};
+            console.log(response);
         }
+
+
     }
 
 }
