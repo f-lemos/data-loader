@@ -1,8 +1,8 @@
 
 const searchLinks = (htmlContent) => {
 
-    const nospacesContent = htmlContent.replace(/ /g,'');
-    const contentArr = nospacesContent.split(/[\r\n\s]+/);
+    //const nospacesContent = htmlContent.replace(/ /g,'');
+    const contentArr = htmlContent.split(/[\r\n\s]+/);
 
     console.log('Parsing html to json format');
     parseJson(contentArr);
@@ -28,7 +28,7 @@ const parseJson = (content) =>{
             console.log(response);
         }
 
-
+        // break;
     }
 
 }
